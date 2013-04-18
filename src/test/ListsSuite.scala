@@ -64,4 +64,60 @@ class ListsSuite extends FunSuite {
     assert(isPalindrom(List(1, 2)) === false)
     assert(isPalindrom((1 to 1000).toList ::: (1 to 999).reverse.toList) === true)
   }
+  
+  test("P07: flatten list structure") {
+    //assert(flatten(List(List(1, 2), 3, List(3))) === List(1, 2, 3, 3))
+    assert(flatten(List(1, 2, List(1, 3))) === List(1, 2, 1, 3))
+  }
+
+  test("P08: compress the list") {
+    assert(compress(List('a', 'b', 'c', 'c', 'c', 'd', 'd')) === List('a', 'b', 'c', 'd'))
+    assert(compress(List()) === List())
+    assert(compress(List('b', 'a', 'a', 'b', 'b', 'b')) === List('b', 'a', 'b'))
+  }
+
+  test("P09: pack object of the list") {
+    assert(pack(List('a', 'a', 'a', 'b', 'c', 'c', 'c')) === List(List('a', 'a', 'a'), List('b'), List('c', 'c', 'c')))
+    assert(pack(List('a')) === List(List('a')))
+  }
+
+  test("P10: consecutive character frequency") {
+    assert(encode(List('a', 'a', 'a', 'b', 'c', 'c', 'c', 'a')) === List(('a', 3), ('b', 1), ('c', 3), ('a', 1)))
+    assert(encode(List.fill(100000)('a')) === List(('a', 100000)))
+  }
+
+  test("P11: modified encoding") {
+    assert(encodeModified(List('a', 'a', 'a', 'b', 'c', 'c')) === List(('a', 3), 'b', ('c', 2)))
+  }
+
+  test("P12: decode run-length encoded list") {
+    assert(decode(List(('a', 2), ('b', 1), ('c', 3))) === List('a', 'a', 'b', 'c', 'c', 'c'))
+  }
+
+  test("P13: encode directly") {
+    assert(encodeDirect(List('a', 'a', 'b', 'c', 'c', 'c')) === List(('a', 2), ('b', 1), ('c', 3)))
+    assert(encodeDirect(List()) === List())
+    assert(encodeDirect(List('a')) === List(('a', 1)))
+  }
+
+  test("P14: duplicate elements of list") {
+    assert(duplicate(List('a', 'b', 'c')) === List('a', 'a', 'b', 'b', 'c', 'c'))
+    assert(duplicate(List()) === List())
+  }
+
+  test("P15: duplicate elements of list given number of times") {
+    assert(duplicateN(3, List('a', 'b')) === List('a', 'a', 'a', 'b', 'b', 'b'))
+  }
+  
+  test("P16: drop every Nth element from list") {
+    assert(drop(2, List('a', 'b', 'c', 'd', 'e')) === List('a', 'c', 'e'))
+  }
+  
+  test("P17: split list") {
+    assert(split(3, List('a', 'b', 'c', 'd')) === (List('a', 'b', 'c'), List('d')))
+  }
+  
+  test("P18: slice list") {
+    assert(slice(3, 7, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h')) === List('d', 'e', 'f', 'g', 'h'))
+  }
 }
